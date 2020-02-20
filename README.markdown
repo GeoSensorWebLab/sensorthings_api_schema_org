@@ -48,7 +48,41 @@ Here is how the properties in the schema.org document are sourced based on the S
 
 Contains the default `@vocab` of `https://schema.org/`.
 
-TODO: continue this
+### `@type`
+
+```
+"@type": "Dataset"
+```
+
+See ["Dataset" on the schema.org directory](https://schema.org/Dataset).
+
+### `@id`
+
+### [`name`](https://schema.org/name)
+
+### [`description`](https://schema.org/description)
+
+### [`url`](https://schema.org/url)
+
+### Excluded: [`sameAs`](https://schema.org/sameAs)
+
+Not used as there is no canonical overview page for a SensorThings API instance. This would be different than the root URL for the instance.
+
+### [`version`](https://schema.org/version)
+
+### [`isAccessibleForFree`](https://schema.org/isAccessibleForFree)
+
+### [`keywords`](https://schema.org/keywords)
+
+### [`license`](https://schema.org/license)
+
+### [`identifier`](https://schema.org/identifier)
+
+### [`spatialCoverage`](https://schema.org/spatialCoverage)
+
+### [`temporalCoverage`](https://schema.org/temporalCoverage)
+
+### [`variableMeasured`](https://schema.org/variableMeasured)
 
 ## License
 
