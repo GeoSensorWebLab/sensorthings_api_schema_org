@@ -1,0 +1,9 @@
+{
+  "name": "sta_schema_org",
+  "version": "1.0.0",
+  "description": "Generate schema.org documents detailing a SensorThings API instance contents",
+  "main": "server.js",
+  "author": "James Badger <jpbadger@ucalgary.ca>",
+  "license": "MIT",
+  "private": true
+}
