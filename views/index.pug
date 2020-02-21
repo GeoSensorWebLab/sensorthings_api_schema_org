@@ -1,5 +1,13 @@
+doctype html
 html
   head
-    title howdy
+    title SensorThings API Datasets
   body
-    h1= message
+    h1 Available Datasets in SensorThings API Instances
+
+    if reports.length === 0
+      p No reports available
+    else
+      ul
+        each report in reports
+          li Report: #{report}
