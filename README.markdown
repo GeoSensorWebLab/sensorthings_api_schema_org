@@ -58,11 +58,35 @@ See ["Dataset" on the schema.org directory](https://schema.org/Dataset).
 
 ### `@id`
 
+```
+"@id": "https://arctic-sensors.sensorup.com/v1.0/"
+```
+
+A static identifier referring to this specific SensorThings API instance.
+
 ### [`name`](https://schema.org/name)
+
+```
+"name": "SensorThings API: arctic-sensors.sensorup.com"
+```
+
+Defaults to the FQDN that serves the SensorThings API instance.
 
 ### [`description`](https://schema.org/description)
 
+```
+"description": "A summary of data contained in this SensorThings API instance."
+```
+
+Very basic description of what is described by this schema.org document.
+
 ### [`url`](https://schema.org/url)
+
+```
+"url": "https://arctic-sensors.sensorup.com/v1.0/"
+```
+
+URL to the base entry point of the SensorThings API instance. In this case it is the same as the `@id` property as we are describing the entire instance rather than a subset inside the instance.
 
 ### Excluded: [`sameAs`](https://schema.org/sameAs)
 
@@ -70,15 +94,53 @@ Not used as there is no canonical overview page for a SensorThings API instance.
 
 ### [`version`](https://schema.org/version)
 
+```
+"version": "2020-02-21T17:34:18.553Z"
+```
+
+As a SensorThings API instance is typically constantly updating, the "version" tag refers to the date of the summary of the instance. This would mean that a later version tag will be considered more up-to-date and accurate.
+
 ### [`isAccessibleForFree`](https://schema.org/isAccessibleForFree)
+
+```
+"isAccessibleForFree": true
+```
+
+Defaults to `true`. If the scanner is able to read the instance, then there are likely no access control restrictions on reading data.
 
 ### [`keywords`](https://schema.org/keywords)
 
-### [`license`](https://schema.org/license)
+```
+"keywords": ["Sensors", "REST", "SensorThings API", "OGC", "Observations", "Measurements"]
+```
 
-### [`identifier`](https://schema.org/identifier)
+Some general terms for SensorThings API instances.
+
+### Excluded: [`license`](https://schema.org/license)
+
+```
+"license": "?"
+```
+
+Unused currently, as SensorThings API does not include usage restriction metadata currently.
+
+### Excluded: [`identifier`](https://schema.org/identifier)
+
+There is no central authority for registering SensorThings API instances, yet.
 
 ### [`spatialCoverage`](https://schema.org/spatialCoverage)
+
+```
+"spatialCoverage": {
+    "@type": "Place",
+    "geo": {
+        "@type": "GeoShape",
+        "polygon": "1 1 5 5 5 1 1 1"
+    }
+}
+```
+
+A polygon that encloses all the Features of Interest in the SensorThings API instance. Generation of this property may be time-consuming depending on the number of FOIs. A polygon is used instead of a bounding box as a polygon is easier to re-project and maintain its shape.
 
 ### [`temporalCoverage`](https://schema.org/temporalCoverage)
 
