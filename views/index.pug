@@ -10,4 +10,6 @@ html
     else
       ul
         each report in reports
-          li Report: #{report}
+          li Report:&nbsp;
+            a(href="/" + report)
+              code #{report}
