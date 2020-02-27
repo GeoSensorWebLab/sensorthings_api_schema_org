@@ -1,6 +1,7 @@
 const bent = require('bent')
 const fs = require('fs')
 const url = require('url')
+const geomHull = require("@thi.ng/geom-hull")
 const getJSON = bent('json')
 
 // use an async main function so we can use await for HTTP calls
@@ -44,23 +45,32 @@ async function main() {
   let fois = await downloadFOIs(foisURL)
   console.log(`${fois.length} features of interest downloaded`)
 
-  // Convert FOI features into one single GeoJSON Feature Collection
+  // Convert FOI features into array of x-y pairs
+  let points = fois.map((foi) => {
+    let geometry = foi.feature
+    if (geometry.type === "Point") {
+      return geometry.coordinates
+    }
+  })  
 
-  let allFoiFeature = {
-    "type": "FeatureCollection",
-    "features": fois.map((foi) => {
-      return {
-        "type": "Feature",
-        "geometry": foi.feature,
-        "properties": {}
-      }
-    })
+  // Create polygon bounding all features
+  let polygon = geomHull.grahamScan2(points)
+
+  // If last pair does not equal first pair, re-add first pair at the
+  // end to "close" the polygon
+  if (polygon[0] !== polygon[polygon.length]) {
+    polygon.push(polygon[0])
   }
 
-  /// TODO: create actual polygon bounding all features
-
-  process.exit(1)
-  let foiContainerPolygon = ""
+  // Convert to a GeoJSON Polygon feature
+  let foiContainerPolygon = {
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "Polygon",
+      coordinates: polygon
+    }
+  }
 
   // Create schema.org document (JSON-LD encoding)
   let report = {

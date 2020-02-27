@@ -142,6 +142,8 @@ There is no central authority for registering SensorThings API instances, yet.
 
 A polygon that encloses all the Features of Interest in the SensorThings API instance. Generation of this property may be time-consuming depending on the number of FOIs. A polygon is used instead of a bounding box as a polygon is easier to re-project and maintain its shape.
 
+Calculation of the polygon coverage is done using a convex hull algorithm.
+
 ### [`temporalCoverage`](https://schema.org/temporalCoverage)
 
 ### [`variableMeasured`](https://schema.org/variableMeasured)
