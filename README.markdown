@@ -152,7 +152,9 @@ Calculation of the polygon coverage is done using a convex hull algorithm.
 
 An ISO8601 interval that spans from the earliest Observation phenomenon time to the latest phenomenon time.
 
-### [`variableMeasured`](https://schema.org/variableMeasured)
+### Excluded: [`variableMeasured`](https://schema.org/variableMeasured)
+
+While the variables being measured could be represented by the Observed Property entities stored in the SensorThings API instance, this list could potentially be very large and cover too many different variables.
 
 ## License
 
