@@ -12,13 +12,13 @@ A script for generating JSON-LD schema.org documents that summarize the contents
 
 Install dependencies using yarn:
 
-```
+```terminal
 $ yarn install
 ```
 
 Use Node to start the web server:
 
-```
+```terminal
 $ node server.js
 ```
 
@@ -28,7 +28,7 @@ This will start a server on port 5000 serving the contents of the `public` direc
 
 Use Node to execute the script with an input SensorThings API instance and an output directory for the schema.org report.
 
-```
+```terminal
 $ node report.js http://example.org/v1.0/ public
 ```
 
@@ -40,7 +40,7 @@ Here is how the properties in the schema.org document are sourced based on the S
 
 ### `@context`
 
-```
+```json
 "@context": {
     "@vocab": "https://schema.org/"
 }
@@ -50,7 +50,7 @@ Contains the default `@vocab` of `https://schema.org/`.
 
 ### `@type`
 
-```
+```json
 "@type": "Dataset"
 ```
 
@@ -58,7 +58,7 @@ See ["Dataset" on the schema.org directory](https://schema.org/Dataset).
 
 ### `@id`
 
-```
+```json
 "@id": "https://arctic-sensors.sensorup.com/v1.0/"
 ```
 
@@ -66,7 +66,7 @@ A static identifier referring to this specific SensorThings API instance.
 
 ### [`name`](https://schema.org/name)
 
-```
+```json
 "name": "SensorThings API: arctic-sensors.sensorup.com"
 ```
 
@@ -74,7 +74,7 @@ Defaults to the FQDN that serves the SensorThings API instance.
 
 ### [`description`](https://schema.org/description)
 
-```
+```json
 "description": "A summary of data contained in this SensorThings API instance."
 ```
 
@@ -82,7 +82,7 @@ Very basic description of what is described by this schema.org document.
 
 ### [`url`](https://schema.org/url)
 
-```
+```json
 "url": "https://arctic-sensors.sensorup.com/v1.0/"
 ```
 
@@ -94,7 +94,7 @@ Not used as there is no canonical overview page for a SensorThings API instance.
 
 ### [`version`](https://schema.org/version)
 
-```
+```json
 "version": "2020-02-21T17:34:18.553Z"
 ```
 
@@ -102,7 +102,7 @@ As a SensorThings API instance is typically constantly updating, the "version" t
 
 ### [`isAccessibleForFree`](https://schema.org/isAccessibleForFree)
 
-```
+```json
 "isAccessibleForFree": true
 ```
 
@@ -110,7 +110,7 @@ Defaults to `true`. If the scanner is able to read the instance, then there are 
 
 ### [`keywords`](https://schema.org/keywords)
 
-```
+```json
 "keywords": ["Sensors", "REST", "SensorThings API", "OGC", "Observations", "Measurements"]
 ```
 
@@ -118,7 +118,7 @@ Some general terms for SensorThings API instances.
 
 ### Excluded: [`license`](https://schema.org/license)
 
-```
+```json
 "license": "?"
 ```
 
@@ -130,7 +130,7 @@ There is no central authority for registering SensorThings API instances, yet.
 
 ### [`spatialCoverage`](https://schema.org/spatialCoverage)
 
-```
+```json
 "spatialCoverage": {
     "@type": "Place",
     "geo": {
