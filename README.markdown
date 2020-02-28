@@ -48,14 +48,6 @@ Here is how the properties in the schema.org document are sourced based on the S
 
 Contains the default `@vocab` of `https://schema.org/`.
 
-### `@type`
-
-```json
-"@type": "Dataset"
-```
-
-See ["Dataset" on the schema.org directory](https://schema.org/Dataset).
-
 ### `@id`
 
 ```json
@@ -64,13 +56,13 @@ See ["Dataset" on the schema.org directory](https://schema.org/Dataset).
 
 A static identifier referring to this specific SensorThings API instance.
 
-### [`name`](https://schema.org/name)
+### `@type`
 
 ```json
-"name": "SensorThings API: arctic-sensors.sensorup.com"
+"@type": "Dataset"
 ```
 
-Defaults to the FQDN that serves the SensorThings API instance.
+See ["Dataset" on the schema.org directory](https://schema.org/Dataset).
 
 ### [`description`](https://schema.org/description)
 
@@ -80,25 +72,9 @@ Defaults to the FQDN that serves the SensorThings API instance.
 
 Very basic description of what is described by this schema.org document.
 
-### [`url`](https://schema.org/url)
+### Excluded: [`identifier`](https://schema.org/identifier)
 
-```json
-"url": "https://arctic-sensors.sensorup.com/v1.0/"
-```
-
-URL to the base entry point of the SensorThings API instance. In this case it is the same as the `@id` property as we are describing the entire instance rather than a subset inside the instance.
-
-### Excluded: [`sameAs`](https://schema.org/sameAs)
-
-Not used as there is no canonical overview page for a SensorThings API instance. This would be different than the root URL for the instance.
-
-### [`version`](https://schema.org/version)
-
-```json
-"version": "2020-02-21T17:34:18.553Z"
-```
-
-As a SensorThings API instance is typically constantly updating, the "version" tag refers to the date of the summary of the instance. This would mean that a later version tag will be considered more up-to-date and accurate.
+There is no central authority for registering SensorThings API instances, yet.
 
 ### [`isAccessibleForFree`](https://schema.org/isAccessibleForFree)
 
@@ -124,9 +100,17 @@ Some general terms for SensorThings API instances.
 
 Unused currently, as SensorThings API does not include usage restriction metadata currently.
 
-### Excluded: [`identifier`](https://schema.org/identifier)
+### [`name`](https://schema.org/name)
 
-There is no central authority for registering SensorThings API instances, yet.
+```json
+"name": "SensorThings API: arctic-sensors.sensorup.com"
+```
+
+Defaults to the FQDN that serves the SensorThings API instance.
+
+### Excluded: [`sameAs`](https://schema.org/sameAs)
+
+Not used as there is no canonical overview page for a SensorThings API instance. This would be different than the root URL for the instance.
 
 ### [`spatialCoverage`](https://schema.org/spatialCoverage)
 
@@ -152,9 +136,25 @@ Calculation of the polygon coverage is done using a convex hull algorithm.
 
 An ISO8601 interval that spans from the earliest Observation phenomenon time to the latest phenomenon time.
 
+### [`url`](https://schema.org/url)
+
+```json
+"url": "https://arctic-sensors.sensorup.com/v1.0/"
+```
+
+URL to the base entry point of the SensorThings API instance. In this case it is the same as the `@id` property as we are describing the entire instance rather than a subset inside the instance.
+
 ### Excluded: [`variableMeasured`](https://schema.org/variableMeasured)
 
 While the variables being measured could be represented by the Observed Property entities stored in the SensorThings API instance, this list could potentially be very large and cover too many different variables.
+
+### [`version`](https://schema.org/version)
+
+```json
+"version": "2020-02-21T17:34:18.553Z"
+```
+
+As a SensorThings API instance is typically constantly updating, the "version" tag refers to the date of the summary of the instance. This would mean that a later version tag will be considered more up-to-date and accurate.
 
 ## License
 
