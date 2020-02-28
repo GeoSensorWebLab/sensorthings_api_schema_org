@@ -72,6 +72,38 @@ async function main() {
     }
   }
 
+  /* Download oldest and newest Observations for temporal range */
+  let observationsResource = staRoot.value.find(element => element.name === "Observations")
+  let observationsURL = observationsResource.url
+
+  async function downloadObservations(url, queryOptions) {
+    // Convert query options object into query string
+    url += "?" + Object.keys(queryOptions).reduce((memo, key) => {
+      memo.push(`${key}=${queryOptions[key]}`)
+      return memo
+    }, []).join("&")
+
+    let response = await getJSON(url)
+    let observationsCollection = response.value
+    return observationsCollection
+  }
+
+  console.log("Downloading Observations")
+
+  let oldestObservations = await downloadObservations(observationsURL, {
+    "$top": 1,
+    "$orderby": "phenomenonTime asc"
+  })
+
+  let newestObservations = await downloadObservations(observationsURL, {
+    "$top": 1,
+    "$orderby": "phenomenonTime desc"
+  })
+
+  console.log("Done.")
+
+  let temporalCoverage = `${oldestObservations[0].phenomenonTime}/${newestObservations[0].phenomenonTime}`
+
   // Create schema.org document (JSON-LD encoding)
   let report = {
     "@context": {
@@ -93,7 +125,8 @@ async function main() {
         "@type": "GeoShape",
         "polygon": foiContainerPolygon
       }
-    }
+    },
+    "temporalCoverage": temporalCoverage
   }
 
   /* Output Report */

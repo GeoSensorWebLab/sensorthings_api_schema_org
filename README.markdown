@@ -146,6 +146,12 @@ Calculation of the polygon coverage is done using a convex hull algorithm.
 
 ### [`temporalCoverage`](https://schema.org/temporalCoverage)
 
+```json
+"temporalCoverage": "2020-01-01T00:00:00Z/2020-02-01T00:00:00Z"
+```
+
+An ISO8601 interval that spans from the earliest Observation phenomenon time to the latest phenomenon time.
+
 ### [`variableMeasured`](https://schema.org/variableMeasured)
 
 ## License
