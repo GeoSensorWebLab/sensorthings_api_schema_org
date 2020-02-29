@@ -72,6 +72,12 @@ See ["Dataset" on the schema.org directory](https://schema.org/Dataset).
 
 Very basic description of what is described by this schema.org document.
 
+### [`encodingFormat`](https://schema.org/encodingFormat)
+
+```json
+"encodingFormat": "application/json"
+```
+
 ### Excluded: [`identifier`](https://schema.org/identifier)
 
 There is no central authority for registering SensorThings API instances, yet.

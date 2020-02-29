@@ -109,16 +109,15 @@ async function main() {
     "@context": {
       "@vocab": "https://schema.org/"
     },
-    "@type": "Dataset",
     "@id": staURL.toString(),
-    "name": `SensorThings API: ${fqdn}`,
+    "@type": "Dataset",
     "description": "A summary of data contained in this SensorThings API instance.",
-    "url": staURL.toString(),
-    "version": reportTime.toISOString(),
+    "encodingFormat": "application/json",
+    "isAccessibleForFree": true,
     "keywords": [
       "Sensors", "REST", "SensorThings API", "OGC", "Observations", "Measurements"
     ],
-    "isAccessibleForFree": true,
+    "name": `SensorThings API: ${fqdn}`,
     "spatialCoverage": {
       "@type": "Place",
       "geo": {
@@ -126,7 +125,9 @@ async function main() {
         "polygon": foiContainerPolygon
       }
     },
-    "temporalCoverage": temporalCoverage
+    "temporalCoverage": temporalCoverage,
+    "url": staURL.toString(),
+    "version": reportTime.toISOString(),
   }
 
   /* Output Report */
