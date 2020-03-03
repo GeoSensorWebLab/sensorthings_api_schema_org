@@ -2,6 +2,15 @@ doctype html
 html
   head
     title SensorThings API Datasets
+    style.
+      body {
+        margin: 1em auto;
+        max-width: 60%;
+      }
+
+      h1 {
+        font-family: sans-serif;
+      }
   body
     h1 Available Datasets in SensorThings API Instances
 
@@ -10,6 +19,7 @@ html
     else
       ul
         each report in reports
-          li Report:&nbsp;
-            a(href="/" + report)
-              code #{report}
+          li 
+            p Report:&nbsp;
+              a(href="/" + report)
+                code #{report}
