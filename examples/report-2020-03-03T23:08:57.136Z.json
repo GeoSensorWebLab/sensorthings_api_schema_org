@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/"
+  },
+  "@id": "https://arctic-sensors.sensorup.com/v1.0",
+  "@type": "Dataset",
+  "description": "A summary of data contained in this SensorThings API instance.",
+  "encodingFormat": "application/json",
+  "isAccessibleForFree": true,
+  "keywords": [
+    "Sensors",
+    "REST",
+    "SensorThings API",
+    "OGC",
+    "Observations",
+    "Measurements"
+  ],
+  "name": "SensorThings API: arctic-sensors.sensorup.com",
+  "spatialCoverage": {
+    "@type": "Place",
+    "geo": {
+      "@type": "GeoShape",
+      "polygon": " -80.617031 51.290444 -80.60834 51.29203 -60.2167 55.45 -62.28 82.52 -91.8166 81.1608 -119.3472 76.2375 -140.15 69.1644 -140.8475 68.8006 -140.86876 62.41016 -139.03995 61.37066 -137.580277 60.772502 -80.617031 51.290444"
+    }
+  },
+  "temporalCoverage": "2016-04-21T21:00:00.000Z/2020-03-03T22:00:00.000Z",
+  "url": "https://arctic-sensors.sensorup.com/v1.0",
+  "version": "2020-03-03T23:08:57.136Z"
+}
