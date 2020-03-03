@@ -62,15 +62,11 @@ async function main() {
     polygon.push(polygon[0])
   }
 
-  // Convert to a GeoJSON Polygon feature
-  let foiContainerPolygon = {
-    type: "Feature",
-    properties: {},
-    geometry: {
-      type: "Polygon",
-      coordinates: polygon
-    }
-  }
+  // Convert to a GeoShape Polygon feature
+  let foiContainerPolygon = polygon.reduce((memo, pair) => {
+    memo += " " + pair.join(" ")
+    return memo
+  }, "")
 
   /* Download oldest and newest Observations for temporal range */
   let observationsResource = staRoot.value.find(element => element.name === "Observations")
