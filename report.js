@@ -2,7 +2,7 @@ const bent = require('bent')
 const fs = require('fs')
 const url = require('url')
 const geomHull = require("@thi.ng/geom-hull")
-const IntegerProgressIndicator = require('./lib/IntegerProgressIndicator.js')
+const Downloader = require('./lib/Downloader.js')
 const getJSON = bent('json')
 
 // use an async main function so we can use await for HTTP calls
@@ -31,23 +31,9 @@ async function main() {
   let foisURL = foiResource.url
 
   // Download all Features of Interest
-  // If there is an "@iot.nextLink" in the response, then continue downloading
-  // recursively.
-  async function downloadFOIs(url, progressIndicator) {
-    let response = await getJSON(url)
-    let foiCollection = response.value
-    progressIndicator.setTotal(response["@iot.count"])
-    progressIndicator.addProgress(foiCollection.length)
-    if (response["@iot.nextLink"]) {
-      let moreFois = await downloadFOIs(response["@iot.nextLink"], progressIndicator)
-      foiCollection = foiCollection.concat(moreFois)
-    }
-    return foiCollection
-  }
-
   console.log("Downloading Features of Interest")
-  let foiProgress = new IntegerProgressIndicator()
-  let fois = await downloadFOIs(foisURL, foiProgress)
+  let foiDownloader = new Downloader()
+  let fois = await foiDownloader.get(foisURL)
   console.log(`Done. ${fois.length} features of interest downloaded`)
 
   // Convert FOI features into array of x-y pairs
