@@ -2,6 +2,8 @@
 
 A script for generating JSON-LD schema.org documents that summarize the contents of a SensorThings API instance. These reports are stored in a public directory that is then served using a Node.js web server for consumption by schema.org compatible crawlers.
 
+This is unstable software that is still under development. It will likely have API changes in the near future before reaching 1.0.
+
 ## Requirements
 
 * Node.js v13
@@ -165,4 +167,3 @@ As a SensorThings API instance is typically constantly updating, the "version" t
 ## License
 
 MIT License
-
