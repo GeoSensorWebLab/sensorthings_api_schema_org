@@ -1,8 +1,8 @@
 const bent = require('bent')
 const fs = require('fs')
-const readline = require('readline')
 const url = require('url')
 const geomHull = require("@thi.ng/geom-hull")
+const IntegerProgressIndicator = require('./lib/IntegerProgressIndicator.js')
 const getJSON = bent('json')
 
 // use an async main function so we can use await for HTTP calls
@@ -29,46 +29,6 @@ async function main() {
   let staRoot = await getJSON(staURL)
   let foiResource = staRoot.value.find(element => element.name === "FeaturesOfInterest")
   let foisURL = foiResource.url
-
-  class IntegerProgressIndicator {
-    constructor(total) {
-      // the expected number of total items
-      this.total = total
-      this.progress = 0
-    }
-
-    // Increase the progress by the given amount
-    addProgress(amount) {
-      this.progress += amount
-      this.draw()
-    }
-
-    // Update the current integer progress, which will
-    // automatically update the display
-    setProgress(progress) {
-      this.progress = progress
-      this.draw()
-    }
-
-    // Update the total, in case it is not available until later.
-    // this will automatically update the display
-    setTotal(total) {
-      this.total = total
-      this.draw()
-    }
-
-    draw() {
-      // draw current progress
-      readline.cursorTo(process.stdout, 0, 0)
-      process.stdout.write(`${this.progress}/`)
-      // draw total
-      if (this.total === undefined) {
-        
-      } else {
-        process.stdout.write(`${this.total}`)
-      }
-    }
-  }
 
   // Download all Features of Interest
   // If there is an "@iot.nextLink" in the response, then continue downloading
