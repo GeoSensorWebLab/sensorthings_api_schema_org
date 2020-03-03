@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/"
+  },
+  "@id": "https://ucalgary-sandbox-01.sensorup.com/v1.0/",
+  "@type": "Dataset",
+  "description": "A summary of data contained in this SensorThings API instance.",
+  "encodingFormat": "application/json",
+  "isAccessibleForFree": true,
+  "keywords": [
+    "Sensors",
+    "REST",
+    "SensorThings API",
+    "OGC",
+    "Observations",
+    "Measurements"
+  ],
+  "name": "SensorThings API: ucalgary-sandbox-01.sensorup.com",
+  "spatialCoverage": {
+    "@type": "Place",
+    "geo": {
+      "@type": "GeoShape",
+      "polygon": " -115.1320839 51.07840033 -115.1203251 51.08055723 -115.1196384 51.08438547 -115.1236725 51.08832122 -115.1371479 51.0877821 -115.1416111 51.08406197 -115.1378345 51.08050331 -115.135603 51.07893956 -115.1320839 51.07840033"
+    }
+  },
+  "temporalCoverage": "2017-02-07T18:02:00.000Z/2020-03-03T22:45:38.465Z",
+  "url": "https://ucalgary-sandbox-01.sensorup.com/v1.0/",
+  "version": "2020-03-03T23:15:07.048Z"
+}
