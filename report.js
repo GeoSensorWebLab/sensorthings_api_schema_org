@@ -33,7 +33,7 @@ async function main() {
   // Download all Features of Interest
   console.log("Downloading Features of Interest")
   let foiDownloader = new Downloader()
-  let fois = await foiDownloader.get(foisURL)
+  let fois = await foiDownloader.recursiveGet(foisURL)
   console.log(`Done. ${fois.length} features of interest downloaded`)
 
   // Convert FOI features into array of x-y pairs
@@ -63,26 +63,16 @@ async function main() {
   let observationsResource = staRoot.value.find(element => element.name === "Observations")
   let observationsURL = observationsResource.url
 
-  async function downloadObservations(url, queryOptions) {
-    // Convert query options object into query string
-    url += "?" + Object.keys(queryOptions).reduce((memo, key) => {
-      memo.push(`${key}=${queryOptions[key]}`)
-      return memo
-    }, []).join("&")
-
-    let response = await getJSON(url)
-    let observationsCollection = response.value
-    return observationsCollection
-  }
-
   console.log("Downloading Observations")
+  let oldDownloader = new Downloader()
+  let newDownloader = new Downloader()
 
-  let oldestObservations = await downloadObservations(observationsURL, {
+  let oldestObservations = await oldDownloader.get(observationsURL, {
     "$top": 1,
     "$orderby": "phenomenonTime asc"
   })
 
-  let newestObservations = await downloadObservations(observationsURL, {
+  let newestObservations = await newDownloader.get(observationsURL, {
     "$top": 1,
     "$orderby": "phenomenonTime desc"
   })
