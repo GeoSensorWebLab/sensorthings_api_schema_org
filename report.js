@@ -42,8 +42,9 @@ async function main() {
     return foiCollection
   }
 
+  console.log("Downloading Features of Interest")
   let fois = await downloadFOIs(foisURL)
-  console.log(`${fois.length} features of interest downloaded`)
+  console.log(`Done. ${fois.length} features of interest downloaded`)
 
   // Convert FOI features into array of x-y pairs
   let points = fois.map((foi) => {
