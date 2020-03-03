@@ -33,7 +33,7 @@ async function main() {
   // Download all Features of Interest
   console.log("Downloading Features of Interest")
   let foiDownloader = new Downloader()
-  let fois = await foiDownloader.recursiveGet(foisURL)
+  let fois = await foiDownloader.recursiveGet(foisURL, {}, 2000)
   console.log(`Done. ${fois.length} features of interest downloaded`)
 
   // Convert FOI features into array of x-y pairs
