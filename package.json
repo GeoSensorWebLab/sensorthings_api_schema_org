@@ -8,6 +8,7 @@
   "private": true,
   "dependencies": {
     "@thi.ng/geom-hull": "^0.0.35",
+    "aws-sdk": "^2.645.0",
     "bent": "^7.1.0",
     "express": "^4.17.1",
     "pug": "^2.0.4"
