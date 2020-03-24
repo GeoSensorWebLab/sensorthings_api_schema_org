@@ -11,11 +11,16 @@ const Report = require('./lib/Report.js')
 // 
 // S3_BUCKET: The name of the S3 bucket where the output will be uploaded
 // S3_PATH:   The directory path in the S3 bucket to use. Will be created if it does not exist.
+// S3_REGION: The name of the AWS distribution region (e.g. us-east-1)
 // STA_URL:   The URL to the SensorThings API instance that will be indexed.
 
-let s3 = new AWS.S3()
+let s3 = new AWS.S3({
+  region: process.env.S3_REGION
+})
 
 exports.handler = async (event) => {
+  console.log(process.env.S3_BUCKET, process.env.S3_PATH, process.env.STA_URL)
+
   // URL to the root of the SensorThings API instance to scan
   let staURL = new URL(process.env.STA_URL)
 
@@ -25,7 +30,7 @@ exports.handler = async (event) => {
 
   // Upload to S3
   console.log(`Uploading to bucket ${process.env.S3_BUCKET}/${process.env.S3_PATH}/.`)
-  s3.putObject({
+  let putDoc = s3.putObject({
     Bucket: process.env.S3_BUCKET,
     Key: `${process.env.S3_PATH}/${report.timeString()}.json`,
     Body: report.toJSON(),
@@ -37,4 +42,6 @@ exports.handler = async (event) => {
       console.log("Finished upload.", data)
     }
   })
+
+  await putDoc.promise()
 }
