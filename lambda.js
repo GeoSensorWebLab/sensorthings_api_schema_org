@@ -24,6 +24,7 @@ exports.handler = async (event) => {
   await report.generate()
 
   // Upload to S3
+  console.log(`Uploading to bucket ${process.env.S3_BUCKET}/${process.env.S3_PATH}/.`)
   s3.putObject({
     Bucket: process.env.S3_BUCKET,
     Key: `${process.env.S3_PATH}/${report.timeString()}.json`,
@@ -33,7 +34,7 @@ exports.handler = async (event) => {
     if (err) {
       console.error(err, err.stack)
     } else {
-      console.log(data)
+      console.log("Finished upload.", data)
     }
   })
 }
