@@ -31,10 +31,11 @@ exports.handler = async (event) => {
   // Upload to S3
   console.log(`Uploading to bucket ${process.env.S3_BUCKET}/${process.env.S3_PATH}/.`)
   let putDoc = s3.putObject({
-    Bucket: process.env.S3_BUCKET,
-    Key: `${process.env.S3_PATH}/${report.timeString()}.json`,
-    Body: report.toJSON(),
-    ContentType: "application/json"
+    ACL:         "public-read",
+    Body:        report.toJSON(),
+    Bucket:      process.env.S3_BUCKET,
+    ContentType: "application/json",
+    Key:         `${process.env.S3_PATH}/${report.timeString()}.json`
   }, (err, data) => {
     if (err) {
       console.error(err, err.stack)
