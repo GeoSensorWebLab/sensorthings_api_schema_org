@@ -28,14 +28,25 @@ exports.handler = async (event) => {
   let report = new Report(staURL)
   await report.generate()
 
-  // Upload to S3
+  // Determine upload paths
+  // First is for the "latest" version of the report
+  // Second is for the "archived" version of the report
+  let date = report.getDate()
+  let year = date.getUTCFullYear()
+  let month = (date.getUTCMonth() + 1).toString()
+  // Add padding if necessary
+  month = month.length === 1 ? `0${month}` : month
+  let latestPath = `${process.env.S3_PATH}/latest.json`
+  let archivedPath = `${process.env.S3_PATH}/${year}/${month}/${report.timeString()}.json`
+
+  // Upload to S3 archived path
   console.log(`Uploading to bucket ${process.env.S3_BUCKET}/${process.env.S3_PATH}/.`)
   let putDoc = s3.putObject({
     ACL:         "public-read",
     Body:        report.toJSON(),
     Bucket:      process.env.S3_BUCKET,
     ContentType: "application/json",
-    Key:         `${process.env.S3_PATH}/${report.timeString()}.json`
+    Key:         archivedPath
   }, (err, data) => {
     if (err) {
       console.error(err, err.stack)
@@ -45,4 +56,21 @@ exports.handler = async (event) => {
   })
 
   await putDoc.promise()
+
+  // Copy archived version on S3 to "latest" path
+  let copyDoc = s3.copyObject({
+    ACL:         "public-read",
+    Bucket:      process.env.S3_BUCKET,
+    ContentType: "application/json",
+    CopySource:  `${process.env.S3_BUCKET}/${archivedPath}`,
+    Key:         latestPath
+  }, (err, data) => {
+    if (err) {
+      console.error(err, err.stack)
+    } else {
+      console.log("Finished copy to latest path.", data)
+    }
+  })
+
+  await copyDoc.promise()
 }
