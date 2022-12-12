@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "aws-sdk": "^2.645.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "pug": "^2.0.4"
   }
 }
